@@ -1,5 +1,5 @@
 body {
-  background-color: SlateGrey;
+  background-color: #1E232E;
 }
 
 h1 {
@@ -55,7 +55,7 @@ button:hover {
 ul{
   font-family: verdana;
   font-size: 15px;
-  
+
 }
 
 footer {
