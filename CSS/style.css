@@ -1,7 +1,8 @@
 body {
     background-image: url("../IMG/fond.png");
     background-repeat: repeat;
-    background-size:50%;
+    background-size: 50%;
+    z-index: 0;
 }
 
 h1 {
@@ -9,15 +10,22 @@ h1 {
   font-family: "Calibri", sans-serif;
   text-align: center;
   text-decoration: underline;
+  font-size:30px;
 }
 
 p {
   font-family: Roboto;
   font-size: 15px;
   text-align: center;
-color: white;
+    color: white;
+}
+img{
+    border: 2px solid black;
 }
 
+    img:hover {
+        border: 2px solid #101010;
+    }
 h3 {
     text-align: center;
     color: #b94e4a;
@@ -36,7 +44,7 @@ a {
     font-family: Roboto;
 }
 button {
-    text-decoration-color : white;
+    text-decoration-color: white;
     border: none;
     padding: 16px 32px;
     text-align: center;
@@ -51,6 +59,7 @@ button {
     color: #233e42;
     border: 2px solid black;
     border-radius: 12px;
+    z-index: 3;
 }
     button:hover {
         background-color: #1f525a;
@@ -63,6 +72,17 @@ ul {
     font-size: 15px;
 }
 
+.layout p {
+    color: grey;
+    opacity: 35%;
+    font: Roboto;
+    font-size: 65px;
+    text-align: right;
+    padding-right: 2%;
+    padding-bottom: 2%;
+    font-weight: 500;
+    z-index: 0;
+}
 footer {
    position: fixed;
    left: 0;
@@ -72,11 +92,6 @@ footer {
    text-align: center;
 }
 
-p.layout{
-    color: red;
-    bottom: 100%;
-    margin-bottom:auto;
-}
 
 .center {
   display: block;
