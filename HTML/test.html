@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio 2020-2021</title>
+
+<!-- Polices et couleurs intégrées -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  background-image: url("../IMG/fond.png");
+  background-repeat: repeat;
+  background-size: 50%;
+  z-index: 0;
+  color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+a {
+  color: #f5f5f5;
+  text-decoration: underline;
+}
+
+/* Cartes et animations */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1400px;
+}
+
+.card {
+  width: 250px;
+  height: 250px;
+  border-radius: 20px;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: all 0.5s ease;
+  position: relative;
+  overflow: hidden;
+  animation: float 4s ease-in-out infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.card:nth-child(2n) { animation-delay: 1s; }
+.card:nth-child(3n) { animation-delay: 2s; }
+.card:nth-child(4n) { animation-delay: 3s; }
+
+.red { background: #f87171; }
+.yellow { background: #facc15;}
+.blue { background: #60a5fa; }
+.green { background: #4ade80;}
+.purple { background: #c084fc; }
+.pink { background: #f472b6; }
+
+.card.expanded {
+  position: fixed;
+  z-index: 1000;
+  border-radius: 30px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  animation: none;
+  transition: all 0.5s ease;
+  font-size: 1em;
+  background-color: rgba(0,0,0,0.85);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content {
+  opacity: 0;
+  transition: opacity 0.3s ease 0.2s;
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.card.expanded .card-content {
+  opacity: 1;
+}
+
+.card-content p, .card-content a, .card-content img, .card-content video {
+  margin-bottom: 15px;
+}
+
+.card-content a {
+  text-decoration: underline;
+}
+
+.card-content img, .card-content video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  font-size: 18px;
+  display: none;
+  z-index: 1001;
+}
+.card.expanded .close-btn {
+  display: block;
+}
+
+.project-number {
+  position: absolute;
+  font-size: 1.5em;
+  font-weight: bold;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+  text-align: center;
+  width: 100%;
+}
+button {
+  text-decoration-color: white;
+   border: none;
+    padding: 16px 32px; text-align: center; text-decoration: none;
+     display: inline-block; font-size: 16px; margin: 4px 2px; -webkit-transition-duration: 0.4s; /* Safari */
+     transition-duration: 0.4s; cursor: pointer; background-color: #233e42; color: #233e42; border: 2px solid black;
+      border-radius: 12px; z-index: 3; }
+    button:hover {
+      background-color: #1f525a; color: black; box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19); }
+      footer { position: fixed; left: 0; bottom: 0; width: 100%; color: white; text-align: center; }
+</style>
+</head>
+<body>
+
+<h1>Portfolio 2020-2021</h1>
+
+<div class="grid">
+  <!-- Projet 1: Magic Di Rosa -->
+  <div class="card red">
+    <div class="project-number">Magic Di Rosa</div>
+    <button class="close-btn">✕</button>
+    <div class="card-content">
+      <p>Magic Di Rosa is a semester-long board game creation project at ETPA. The goal of the project is to recreate an existing board game by combining a film and an artist. In this case, I worked with Hervé Di Rosa, a Sete-based artist, and Porco Rosso, one of Miyazaki’s films. All the graphics and illustrations were entirely designed by me and refined by a graphic design student.</p>
+      <p>GDD is available here: <a href="../IMG/GDD_Miyazaki_Porco_Rosso.pdf" target="_blank">ici</a></p>
+      <img src="../IMG/Résultat.png" alt="Présentation du résultat" loading="lazy"/>
+      <img src="../IMG/Adaptation.png" alt="Adaptation des visuels" loading="lazy"/>
+    </div>
+  </div>
+
+  <!-- Projet 2: Ataraxy -->
+  <div class="card yellow">
+    <div class="project-number">Ataraxy</div>
+    <button class="close-btn">✕</button>
+    <div class="card-content">
+      <p>Ataraxy is a game from the 2021 Global Game Jam, theme: "Lost and Found". The goal is to collect artifacts representing emotions to achieve ataraxia. The game has two phases: navigating the soul through a maze and probing a 3D area to locate invisible artifacts.</p>
+      <p>Visuals and <a href="https://v3.globalgamejam.org/2021/games/ataraxy-2" target="_blank">playable version</a>.</p>
+      <video controls preload="none">
+        <source src="../IMG/Ataraxy.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <!-- Projet 3: Lardon's Adventure -->
+  <div class="card blue">
+    <div class="project-number">Lardon's Adventure</div>
+    <button class="close-btn">✕</button>
+    <div class="card-content">
+      <p>Lardon’s Adventure is a web-based platformer using Phaser 3. The player can enter a second phase where time stops to program abilities.</p>
+      <p><a href="../IMG/GameConcept_Lardon_s Adventure.pdf" target="_blank">Game Concept</a> & <a href="../IMG/GDD Lardon_s Adventure.pdf" target="_blank">GDD</a>. Playable version on <a href="https://brieux.itch.io/lardons-adventure" target="_blank">Itch.io</a></p>
+      <img src="../IMG/ArtWork.jpg" alt="ArtWork Lardon" loading="lazy"/>
+    </div>
+  </div>
+
+  <!-- Projet 4: Rec -->
+  <div class="card green">
+    <div class="project-number">Rec</div>
+    <button class="close-btn">✕</button>
+    <div class="card-content">
+      <p>REC is a game prototype from first-year classmates. Goal: fully playable in 1.5 months. Programming, level design, sound by us; 3D assets/clones from a library.</p>
+      <p>Puzzle FPS: the player is a test subject, actions are cloned to solve puzzles.</p>
+      <p><a href="https://youtu.be/2Pe9-qL0NBg" target="_blank">Gameplay video</a></p>
+      <img src="../IMG/RecLogo.png" alt="Logo REC" loading="lazy"/>
+      <img src="../IMG/RecIG.png" alt="InGame REC" loading="lazy"/>
+      <img src="../IMG/LoadingRec.png" alt="Loading REC" loading="lazy"/>
+    </div>
+  </div>
+
+  <!-- Projet 5: Mutegg -->
+  <div class="card purple">
+    <div class="project-number">Mutegg</div>
+    <button class="close-btn">✕</button>
+    <div class="card-content">
+      <p>Mutegg is a game from an inter-campus Game Jam. Theme: "Communicate Without Speaking." Split-screen, two-player game.</p>
+      <p>I programmed; teammates handled design, art, narrative. The player is a manager influencing employees with gestures.</p>
+      <p><a href="https://stingart.itch.io/mutegg" target="_blank">Download Game</a></p>
+      <img src="../IMG/Mutegg.jpg" alt="Icon Mutegg" loading="lazy"/>
+      <img src="../IMG/IGMutegg.jpg" alt="IN Game Mutegg" loading="lazy"/>
+    </div>
+  </div>
+
+</div>
+<script>
+const cards = Array.from(document.querySelectorAll('.card'));
+let currentIndex = -1;
+
+cards.forEach(card => {
+  card.style.willChange = "transform"; // optimise le rendu GPU
+});
+
+function expandCard(card, index) {
+  const number = card.querySelector('.project-number');
+  const content = card.querySelector('.card-content');
+  number.style.opacity = 0;
+  content.style.opacity = 0;
+
+  const rect = card.getBoundingClientRect();
+  const scaleX = (window.innerWidth * 0.9) / rect.width;
+  const scaleY = (window.innerHeight * 0.9) / rect.height;
+  const translateX = window.innerWidth / 2 - (rect.left + rect.width / 2);
+  const translateY = window.innerHeight / 2 - (rect.top + rect.height / 2);
+
+  // Ajout de la classe expanded avant la transformation
+  card.classList.add('expanded');
+
+  card.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+  card.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scaleX}, ${scaleY})`;
+
+  currentIndex = index;
+
+  // Affiche le contenu après la fin de la transition
+  card.addEventListener('transitionend', function handler() {
+    content.style.opacity = 1;
+    card.style.transition = '';
+    card.removeEventListener('transitionend', handler);
+  });
+}
+
+function collapseCard(card) {
+  const number = card.querySelector('.project-number');
+  const content = card.querySelector('.card-content');
+  number.style.opacity = 1;
+  content.style.opacity = 0;
+
+  card.style.transition = 'transform 0.3s ease';
+  card.style.transform = 'translate(0,0) scale(1,1)';
+
+  card.addEventListener('transitionend', function handler() {
+    card.classList.remove('expanded');
+    card.style.transition = '';
+    card.style.transform = '';
+    currentIndex = -1;
+    card.removeEventListener('transitionend', handler);
+  });
+}
+
+cards.forEach((card, index) => {
+  const closeBtn = card.querySelector('.close-btn');
+
+  card.addEventListener('click', e => {
+    if (!card.classList.contains('expanded') && e.target !== closeBtn) {
+      cards.forEach(c => {
+        if (c.classList.contains('expanded')) collapseCard(c);
+      });
+      requestAnimationFrame(() => expandCard(card, index));
+    }
+  });
+
+  closeBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    collapseCard(card);
+  });
+});
+
+document.addEventListener('keydown', e => {
+  if (currentIndex === -1) return;
+
+  if (e.key === 'Escape') collapseCard(cards[currentIndex]);
+  else if (e.key === 'ArrowRight') {
+    let nextIndex = (currentIndex + 1) % cards.length;
+    collapseCard(cards[currentIndex]);
+    setTimeout(() => expandCard(cards[nextIndex], nextIndex), 300);
+  } else if (e.key === 'ArrowLeft') {
+    let prevIndex = (currentIndex - 1 + cards.length) % cards.length;
+    collapseCard(cards[currentIndex]);
+    setTimeout(() => expandCard(cards[prevIndex], prevIndex), 300);
+  }
+});
+
+</script>
+</body>
+<footer>
+  <button><a href="../index.html">Back to main</a></button>
+</footer>
+</html>

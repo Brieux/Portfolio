@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-image: url("../IMG/fond.png");
+  background-repeat: repeat;
+  background-size: 50%;
+  z-index: 0;
+}
+
+h1 {
+  text-align: center;
+  font-family: "Calibri", sans-serif;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+a {
+  color: #f5f5f5;
+  text-decoration: underline;
+}
+
+/* Grid des cartes */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1400px;
+}
+
+/* Cartes */
+.card {
+  width: 250px;
+  height: 250px;
+  border-radius: 20px;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  position: relative;
+  overflow: hidden;
+  animation: float 4s ease-in-out infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.card:nth-child(2n) { animation-delay: 1s; }
+.card:nth-child(3n) { animation-delay: 2s; }
+.card:nth-child(4n) { animation-delay: 3s; }
+
+/* Couleurs des cartes */
+.red { background: #f87171; }
+.yellow { background: #facc15; }
+.blue { background: #60a5fa; }
+.green { background: #4ade80; }
+.purple { background: #c084fc; }
+.pink { background: #f472b6; }
+
+/* État zoomé */
+.card.expanded {
+  z-index: 1000;
+  border-radius: 30px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.95);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  transform-origin: center; /* <-- ajouté pour zoom centré */
+}
+
+
+
+
+/* Contenu dans la carte */
+.card-content {
+  opacity: 0;
+  transition: opacity 0.5s ease 0.3s;
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.card.expanded .card-content {
+  opacity: 1;
+}
+
+/* Contenu media */
+.card-content p, .card-content a, .card-content img, .card-content video {
+  margin-bottom: 15px;
+}
+
+.card-content a {
+  text-decoration: underline;
+}
+
+.card-content img, .card-content video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  transition: opacity 0.5s ease;
+}
+
+/* Bouton fermeture */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  font-size: 18px;
+  display: none;
+  z-index: 1001;
+}
+.card.expanded .close-btn {
+  display: block;
+}
+
+/* Numéro / titre du projet */
+.project-number {
+  position: absolute;
+  font-size: 1.5em;
+  font-weight: bold;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+  text-align: center;
+  width: 100%;
+}
+
+/* Footer */
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+}
+
+button {
+  text-decoration-color: white;
+  border: none;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: #233e42;
+  color: #233e42;
+  border: 2px solid black;
+  border-radius: 12px;
+  z-index: 3;
+}
+button:hover {
+  background-color: #1f525a;
+  color: black;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
