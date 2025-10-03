@@ -234,93 +234,88 @@ button {
   </div>
 
 </div>
+
 <script>
+// JS pour zoom, fade du numéro, navigation aux flèches et Échap
 const cards = Array.from(document.querySelectorAll('.card'));
 let currentIndex = -1;
 
-cards.forEach(card => {
-  card.style.willChange = "transform"; // optimise le rendu GPU
-});
-
-function expandCard(card, index) {
-  const number = card.querySelector('.project-number');
-  const content = card.querySelector('.card-content');
-  number.style.opacity = 0;
-  content.style.opacity = 0;
-
-  const rect = card.getBoundingClientRect();
-  const scaleX = (window.innerWidth * 0.9) / rect.width;
-  const scaleY = (window.innerHeight * 0.9) / rect.height;
-  const translateX = window.innerWidth / 2 - (rect.left + rect.width / 2);
-  const translateY = window.innerHeight / 2 - (rect.top + rect.height / 2);
-
-  // Ajout de la classe expanded avant la transformation
-  card.classList.add('expanded');
-
-  card.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
-  card.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scaleX}, ${scaleY})`;
-
-  currentIndex = index;
-
-  // Affiche le contenu après la fin de la transition
-  card.addEventListener('transitionend', function handler() {
-    content.style.opacity = 1;
-    card.style.transition = '';
-    card.removeEventListener('transitionend', handler);
-  });
-}
-
-function collapseCard(card) {
-  const number = card.querySelector('.project-number');
-  const content = card.querySelector('.card-content');
-  number.style.opacity = 1;
-  content.style.opacity = 0;
-
-  card.style.transition = 'transform 0.3s ease';
-  card.style.transform = 'translate(0,0) scale(1,1)';
-
-  card.addEventListener('transitionend', function handler() {
-    card.classList.remove('expanded');
-    card.style.transition = '';
-    card.style.transform = '';
-    currentIndex = -1;
-    card.removeEventListener('transitionend', handler);
-  });
-}
-
 cards.forEach((card, index) => {
   const closeBtn = card.querySelector('.close-btn');
+  const number = card.querySelector('.project-number');
 
-  card.addEventListener('click', e => {
-    if (!card.classList.contains('expanded') && e.target !== closeBtn) {
-      cards.forEach(c => {
-        if (c.classList.contains('expanded')) collapseCard(c);
-      });
-      requestAnimationFrame(() => expandCard(card, index));
-    }
+  card.addEventListener('mousedown', () => {
+    const rect = card.getBoundingClientRect();
+    card.dataset.top = rect.top;
+    card.dataset.left = rect.left;
+    card.dataset.width = rect.width;
+    card.dataset.height = rect.height;
   });
 
-  closeBtn.addEventListener('click', e => {
+  const expandCard = () => {
+    document.querySelectorAll('.card.expanded').forEach(c => {
+      c.classList.remove('expanded');
+      c.style.top = '';
+      c.style.left = '';
+      c.style.width = '';
+      c.style.height = '';
+      const n = c.querySelector('.project-number');
+      if (n) n.style.opacity = 1;
+    });
+
+    number.style.opacity = 0;
+
+    setTimeout(() => {
+      const rect = card.getBoundingClientRect();
+      card.style.top = rect.top + 'px';
+      card.style.left = rect.left + 'px';
+      card.style.width = rect.width + 'px';
+      card.style.height = rect.height + 'px';
+      card.offsetHeight;
+      card.classList.add('expanded');
+      card.style.top = '5vh';
+      card.style.left = '5vw';
+      card.style.width = '90vw';
+      card.style.height = '90vh';
+      currentIndex = index;
+    }, 100);
+  };
+
+  card.addEventListener('click', (e) => {
+    if (!card.classList.contains('expanded') && e.target !== closeBtn) expandCard();
+  });
+
+  closeBtn.addEventListener('click', (e) => {
     e.stopPropagation();
-    collapseCard(card);
+    number.style.opacity = 1;
+    card.style.top = card.dataset.top + 'px';
+    card.style.left = card.dataset.left + 'px';
+    card.style.width = card.dataset.width + 'px';
+    card.style.height = card.dataset.height + 'px';
+
+    card.addEventListener('transitionend', function handler() {
+      card.classList.remove('expanded');
+      card.style.top = '';
+      card.style.left = '';
+      card.style.width = '';
+      card.style.height = '';
+      card.removeEventListener('transitionend', handler);
+      currentIndex = -1;
+    });
   });
 });
 
-document.addEventListener('keydown', e => {
+document.addEventListener('keydown', (e) => {
   if (currentIndex === -1) return;
-
-  if (e.key === 'Escape') collapseCard(cards[currentIndex]);
+  if (e.key === 'Escape') cards[currentIndex].querySelector('.close-btn').click();
   else if (e.key === 'ArrowRight') {
     let nextIndex = (currentIndex + 1) % cards.length;
-    collapseCard(cards[currentIndex]);
-    setTimeout(() => expandCard(cards[nextIndex], nextIndex), 300);
+    cards[nextIndex].click();
   } else if (e.key === 'ArrowLeft') {
     let prevIndex = (currentIndex - 1 + cards.length) % cards.length;
-    collapseCard(cards[currentIndex]);
-    setTimeout(() => expandCard(cards[prevIndex], prevIndex), 300);
+    cards[prevIndex].click();
   }
 });
-
 </script>
 </body>
 <footer>
