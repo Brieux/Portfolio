@@ -1,31 +1,294 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-<link rel="stylesheet" href="../CSS/style.css" />
-<title>Professional project</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Professional Projects</title>
+
+<!-- Polices et couleurs intégrées -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  background-image: url("../IMG/fond.png");
+  background-repeat: repeat;
+  background-size: 50%;
+  z-index: 0;
+  color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+a {
+  color: #f5f5f5;
+  text-decoration: underline;
+}
+
+/* Cartes et animations */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  width: 200%;
+  max-width: 1400px;
+  justify-items: center;
+}
+
+.card {
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: all 0.5s ease;
+  position: relative;
+  overflow: hidden;
+  animation: float 4s ease-in-out infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  font-family: 'Calibri', sans-serif;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.card:nth-child(2n) { animation-delay: 1s; }
+.card:nth-child(3n) { animation-delay: 2s; }
+.card:nth-child(4n) { animation-delay: 3s; }
+
+.red { background: #233E42;}
+
+.card.expanded {
+  position: fixed;
+  z-index: 1000;
+  border-radius: 30px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  animation: none;
+  transition: all 0.5s ease;
+  font-size: 1em;
+  background-color: rgba(0,0,0,1);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content {
+  opacity: 0;
+  transition: opacity 0.3s ease 0.2s;
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.card.expanded .card-content {
+  opacity: 1;
+}
+
+.card-content p, .card-content a, .card-content img, .card-content video {
+  margin-bottom: 15px;
+}
+
+.card-content a {
+  text-decoration: underline;
+}
+
+.card-content img, .card-content video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  font-size: 18px;
+  display: none;
+  z-index: 1001;
+}
+.card.expanded .close-btn {
+  display: block;
+}
+
+.project-number {
+  position: absolute;
+  font-size: 1.5em;
+  font-weight: bold;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+  text-align: center;
+  width: 100%;
+}
+
+button {
+  text-decoration-color: white;
+   border: none;
+    padding: 16px 32px; text-align: center; text-decoration: none;
+     display: inline-block; font-size: 16px; margin: 4px 2px; -webkit-transition-duration: 0.4s; /* Safari */
+     transition-duration: 0.4s; cursor: pointer; background-color: #233e42; color: #233e42; border: 2px solid black;
+      border-radius: 12px; z-index: 3;
+  }
+
+  button:hover {
+      background-color: #1f525a; color: black; box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+
+  footer {
+    position: fixed; left: 0; bottom: 0; width: 100%; color: white; text-align: center;
+}
+</style>
 </head>
 <body>
 
-<h1>Professional project</h1>
-<h3> INSERM - Voyage au coeur des vaisseaux sanguins (NDA)</h3>
-<p>During a year I've worked with INSERM's scientific and doctors to create a serious game about blood donation. The aim of the game was to teach people the utility of giving their blood and all the mechanical process of each blood cells. </p>
-<p>We've decided together to use the VR Headset to get a better immersive experience and to use the easy controls from VR Games <br>
-The game is light in term of gameplay because we didn't want to block the player against the game and getting frustrated to not reach any informations.</p>
-<p> Through the whole game scientific facts are displayed using books which can be fund on the ground. <br>
-One of the most key of the game was to create something correct in terms of mechanical process & facts. The game is not realease on stores yet but it is use in blood giving's truck in Grand Est area and only there.</p>
+  <h1>Professional project</h1>
+  <div class="grid">
 
-<h3> Nyamyam (NDA)</h3>
-<p>I've work as freelance Gameplay programer in remote during 6 mounth with Nyamyam, under the lead of Pavle MIHAJLOVIC (lead technical) and Jennifer SCHNEIDEREIT (owner and CEO of Nyamyam)
-we've created all the vertical slice of a VR Game.
-<br> First of all I was in charge of protyping all differents aspect of gameplay using my own interpretation of the GDD.
-<br>Then daily and weekly we reviewed together the work and polish it to Jennifer's first ideas of the game.
-After 4 month we decided to get through a high polish moment to get the best vertical slice to show.</p>
-<p> As it was a vertical slice I also created a lot of tools to get the levels design easy for the future with a full documentation of all my work.</p>
-<p>We also get a lot of optimization process as we were using high ressources technologies.</p>
+<!-- INSERM - Voyage au coeur des vaisseaux sanguins (NDA) -->
+  <div class="card red">
+    <div class="project-number">INSERM</div>
+    <button class="close-btn">✕</button>
+    <div class="card-content">
+      <h3> INSERM - Voyage au coeur des vaisseaux sanguins (NDA)</h3>
+      <p>During a year I've worked with INSERM's scientific and doctors to create a serious game about blood donation. The aim of the game was to teach people the utility of giving their blood and all the mechanical process of each blood cells. </p>
+      <p>We've decided together to use the VR Headset to get a better immersive experience and to use the easy controls from VR Games <br>
+      The game is light in term of gameplay because we didn't want to block the player against the game and getting frustrated to not reach any informations.</p>
+      <p> Through the whole game scientific facts are displayed using books which can be fund on the ground. <br>
+      One of the most key of the game was to create something correct in terms of mechanical process & facts. The game is not realease on stores yet but it is use in blood giving's truck in Grand Est area and only there.</p>
+    </div>
+  </div>
 
+  <!-- Nyamyam -->
+    <div class="card red">
+      <div class="project-number">Nyamyam</div>
+      <button class="close-btn">✕</button>
+      <div class="card-content">
+        <h3> Nyamyam (NDA)</h3>
+        <p>I've work as freelance Gameplay programer in remote during 6 mounth with Nyamyam, under the lead of Pavle MIHAJLOVIC (lead technical) and Jennifer SCHNEIDEREIT (owner and CEO of Nyamyam)
+        we've created all the vertical slice of a VR Game.
+        <br> First of all I was in charge of protyping all differents aspect of gameplay using my own interpretation of the GDD.
+        <br>Then daily and weekly we reviewed together the work and polish it to Jennifer's first ideas of the game.
+        After 4 month we decided to get through a high polish moment to get the best vertical slice to show.</p>
+        <p> As it was a vertical slice I also created a lot of tools to get the levels design easy for the future with a full documentation of all my work.</p>
+        <p>We also get a lot of optimization process as we were using high ressources technologies.</p>
+      </div>
+    </div>
+</div>
 
+<script>
+// JS pour zoom, fade du numéro, navigation aux flèches et Échap
+const cards = Array.from(document.querySelectorAll('.card'));
+let currentIndex = -1;
+
+cards.forEach((card, index) => {
+  const closeBtn = card.querySelector('.close-btn');
+  const number = card.querySelector('.project-number');
+
+  card.addEventListener('mousedown', () => {
+    const rect = card.getBoundingClientRect();
+    card.dataset.top = rect.top;
+    card.dataset.left = rect.left;
+    card.dataset.width = rect.width;
+    card.dataset.height = rect.height;
+  });
+
+  const expandCard = () => {
+    document.querySelectorAll('.card.expanded').forEach(c => {
+      c.classList.remove('expanded');
+      c.style.top = '';
+      c.style.left = '';
+      c.style.width = '';
+      c.style.height = '';
+      const n = c.querySelector('.project-number');
+      if (n) n.style.opacity = 1;
+    });
+
+    number.style.opacity = 0;
+
+    setTimeout(() => {
+      const rect = card.getBoundingClientRect();
+      card.style.top = rect.top + 'px';
+      card.style.left = rect.left + 'px';
+      card.style.width = rect.width + 'px';
+      card.style.height = rect.height + 'px';
+      card.offsetHeight;
+      card.classList.add('expanded');
+      card.style.top = '5vh';
+      card.style.left = '5vw';
+      card.style.width = '90vw';
+      card.style.height = '90vh';
+      currentIndex = index;
+    }, 100);
+  };
+
+  card.addEventListener('click', (e) => {
+    if (!card.classList.contains('expanded') && e.target !== closeBtn) expandCard();
+  });
+
+  closeBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    number.style.opacity = 1;
+    card.style.top = card.dataset.top + 'px';
+    card.style.left = card.dataset.left + 'px';
+    card.style.width = card.dataset.width + 'px';
+    card.style.height = card.dataset.height + 'px';
+
+    card.addEventListener('transitionend', function handler() {
+      card.classList.remove('expanded');
+      card.style.top = '';
+      card.style.left = '';
+      card.style.width = '';
+      card.style.height = '';
+      card.removeEventListener('transitionend', handler);
+      currentIndex = -1;
+    });
+  });
+});
+
+document.addEventListener('keydown', (e) => {
+  if (currentIndex === -1) return;
+  if (e.key === 'Escape') cards[currentIndex].querySelector('.close-btn').click();
+  else if (e.key === 'ArrowRight') {
+    let nextIndex = (currentIndex + 1) % cards.length;
+    cards[nextIndex].click();
+  } else if (e.key === 'ArrowLeft') {
+    let prevIndex = (currentIndex - 1 + cards.length) % cards.length;
+    cards[prevIndex].click();
+  }
+});
+</script>
 </body>
 <footer>
-<button><a href="../index.html">Back to main</a></button>
+  <button><a href="../index.html">Back to main</a></button>
 </footer>
 </html>

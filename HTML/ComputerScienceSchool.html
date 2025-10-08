@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Computer Science School</title>
+
+<!-- Polices et couleurs intégrées -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  background-image: url("../IMG/fond.png");
+  background-repeat: repeat;
+  background-size: 50%;
+  z-index: 0;
+  color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+a {
+  color: #f5f5f5;
+  text-decoration: underline;
+}
+
+/* Cartes et animations */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1400px;
+}
+
+.card {
+  width: 250px;
+  height: 250px;
+  border-radius: 20px;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: all 0.5s ease;
+  position: relative;
+  overflow: hidden;
+  animation: float 4s ease-in-out infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  font-family: 'Calibri', sans-serif;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.card:nth-child(2n) { animation-delay: 1s; }
+.card:nth-child(3n) { animation-delay: 2s; }
+.card:nth-child(4n) { animation-delay: 3s; }
+
+.red { background: #233E42;}
+
+.card.expanded {
+  position: fixed;
+  z-index: 1000;
+  border-radius: 30px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  animation: none;
+  transition: all 0.5s ease;
+  font-size: 1em;
+  background-color: rgba(0,0,0,1);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content {
+  opacity: 0;
+  transition: opacity 0.3s ease 0.2s;
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.card.expanded .card-content {
+  opacity: 1;
+}
+
+.card-content p, .card-content a, .card-content img, .card-content video {
+  margin-bottom: 15px;
+}
+
+.card-content a {
+  text-decoration: underline;
+}
+
+.card-content img, .card-content video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  font-size: 18px;
+  display: none;
+  z-index: 1001;
+}
+.card.expanded .close-btn {
+  display: block;
+}
+
+.project-number {
+  position: absolute;
+  font-size: 1.5em;
+  font-weight: bold;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+  text-align: center;
+  width: 100%;
+}
+
+button {
+  text-decoration-color: white;
+   border: none;
+    padding: 16px 32px; text-align: center; text-decoration: none;
+     display: inline-block; font-size: 16px; margin: 4px 2px; -webkit-transition-duration: 0.4s; /* Safari */
+     transition-duration: 0.4s; cursor: pointer; background-color: #233e42; color: #233e42; border: 2px solid black;
+      border-radius: 12px; z-index: 3;
+  }
+
+  button:hover {
+      background-color: #1f525a; color: black; box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+
+  footer {
+    position: fixed; left: 0; bottom: 0; width: 100%; color: white; text-align: center;
+}
+</style>
+</head>
+<body>
+
+<h1>Computer Science School</h1>
+  <div class="grid">
+<!-- BossGen -->
+  <div class="card red">
+    <div class="project-number">Boss Generation using Unity <br><br><em>2018-2019</em></div>
+    <button class="close-btn">✕</button>
+    <div class="card-content">
+      <h3>Boss Generation using Unity</h3>
+      <p>As part of my involvement in a Master’s TER project, I created the draft scene for their final boss. It is a room containing a boss with platforms that spawn randomly from one side of the screen and move across the room to the other side, similar to some bosses in Cuphead.<br>
+      The boss has five different attacks, with the choice of attack once again being random.</p>
+      <ul class = 'center'>
+      <li>One coming from the sky</li>
+      <li>One switching platforms to killing one </li>
+      <li>Direct shoot randomly distribute</li>
+      <li>One coming from the camera view</li>
+      <li>Creation of a triagular area where the player should not be</li>
+      </ul>
+      <p>The main script responsible for selecting and executing the attacks is <a href="../IMG/BossAttack.cs">available to read</a></p>
+      <video class='center' width="800" controls>
+      <source src="../IMG/UnityBossGeneration.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <!-- Gra -->
+    <div class="card red">
+      <div class="project-number">Gra <br><br><em>2018-2019</em></div>
+      <button class="close-btn">✕</button>
+      <div class="card-content">
+        <h3> Gra </h3>
+        <p> Gra is the final-year project of my third year in Computer Science. It is a scoring arcade game created using the Unity engine.
+        It is the most complete game I have made so far, as it is fully playable and remains installed on the arcade cabinet at FDS Montpellier.
+        All the coding was done by my group and me, while all the graphics are composed of royalty-free assets such as the <a href="https://soundcloud.com/andrewisaias/warped-fantasy-preview-track"> music</a>.<br>
+        The inspiration comes from games of the 70s and 80s, where the only goal was to reach the top of the high score table.
+        This is a two-player game that encourages cooperation and communication to achieve the highest score.<br>
+        One of the game’s major strengths is the addition of a fully procedural and random level generation system, allowing players to never play the same level twice, even after countless hours of gameplay.</p>
+        <img src="../IMG/MenuGra.png" alt="Splashart rapideSteam" width="49%" class="center"/>
+        <img src="../IMG/GraBegin.png" alt="Planche croquis personnages" width="49%" class="center"/>
+        <p>The code responsible for the random level generation is <a href="../IMG/PlatformGenerator.cs">available to read</a></p>
+      </div>
+    </div>
+
+    <!-- Cyber vs Steam -->
+      <div class="card red">
+        <div class="project-number">Cyber vs Steam <br><br><em>2018-2019</em></div>
+        <button class="close-btn">✕</button>
+        <div class="card-content">
+          <h3> Cyber vs Steam </h3>
+          <p> Cyber vs Steam is a text-based game created with the goal of developing a complete game from scratch in 24 hours using Java, to test what I was capable of doing with a language I had no prior experience with.<br>
+          The concept is simple, as it is basically based on the board game Croque Carotte, with a few changes to make the game more interesting. It can be played by up to 4 players, with the goal of reaching the treasure.<br>
+          The cyberpunk and steampunk theme was chosen afterwards, with the potential idea of creating a graphical version in the future.<br></p>
+          <h5> Text version </h5>
+          <img src="../IMG/cvs.png" alt="Debut du jeu et choix de création de héros" width="49%" class="center"/>
+          <img src="../IMG/cvs2.png" alt="Etat du jeu après quelques tours et choix de l'action" padding="2" width="49%" class="center"/>
+          <h5> Characters drawing </h5>
+          <img src="../IMG/ArtWorkCVS.jpg" alt="Splashart rapideSteam" width="49%" class="center"/>
+          <img src="../IMG/ArtWorkCVS2.jpg" alt="Planche croquis personnages" width="49%" class="center"/>
+        </div>
+      </div>
+
+<!-- Undead -->
+  <div class="card red">
+    <div class="project-number">Undead <br><br><em>2017-2018</em></div>
+    <button class="close-btn">✕</button>
+    <div class="card-content">
+      <h3> Undead </h3>
+      <p> Undead is my second-year Bachelor’s final project. It is a puzzle game where the player must solve challenges by placing ghosts, vampires, and zombies on a board.</p>
+      <p> It is a recreation of the game created by <a href="http://www.chiark.greenend.org.uk/~sgtatham/puzzles/js/undead.html"> Simon Tatham </a>,whose report can be downloaded <a href="../IMG/RapportTM5Z.pdf"> here </a></p>
+      <img src="../IMG/UndeadInterface.png" alt="Interface de Undead version TM5Z" width="20%" height="20%" class="center">
+    </div>
+  </div>
+
+<!-- 2048 -->
+  <div class="card red">
+    <div class="project-number">2048 <br><br><em>2017-2018</em></div>
+    <button class="close-btn">✕</button>
+    <div class="card-content">
+      <h3> 2048 </h3>
+      <p> 2048 is a small project that I supervised with high school people from my former school during my second year of university. It is the famous mobile game in a computer version, fully coded in Python 3.<br>
+      My role in this project was to create a clean version that served as a reference for the students, helping them develop better games. </p>
+      <p>The game is available as a ZIP file via <a href="../IMG/2048.zip">this link</a></p>
+      <img src="../IMG/2048Menu.png" alt="Menu principal 2048"width="32%" height="12%" >
+      <img src="../IMG/2048Game.png" alt="Interface de sjeu 2048"width="32%" height="12%" >
+      <img src="../IMG/2048End.png" alt="Ecran fin de jeu"width="32%" height="12%" >
+    </div>
+  </div>
+
+<!-- KTE -->
+  <div class="card red">
+    <div class="project-number">Knowledge to Escape <br><br><em>2017-2018</em></div>
+    <button class="close-btn">✕</button>
+    <div class="card-content">
+      <h3> Knowledge to Escape </h3>
+      <p> Knowledge to Escape is a game created during the 2018 Global Game Jam, whose theme was "Transmission." The player controls a small character who must escape from a laboratory.<br>
+      Unfortunately, time is his enemy, and he is forced to respawn in his HUB every 30 seconds. To progress through the story, he must collect neurons scattered across the map to purchase abilities such as jumping, crouching, or even extending his free time outside the HUB. The game consists of two levels as well as a <a href="https://soundcloud.com/brieux-caquelin/bios">a unique sound atmosphere</a>.
+      </p>
+      <audio controls class="center">
+        <source src="../IMG/Bios.ogg" type="audio/ogg" class="center">
+        <source src="../IMG/Bios.mp3" type="audio/mpeg" class="center">
+      </audio>
+      <br>
+      <img src="../IMG/NiveauKTE.png" alt="Aperçu du niveau 1 de KTE"width="32%" height="12%" class="center">
+      <img src="../IMG/HérosKTE.png" alt="HUD de KTE"width="32%" height="12%" class="center">
+      <img src="../IMG/CrunchKTE.png" alt="Héros de KTE en mode accroupis"width="32%" height="12%" class="center">
+      <br>
+    </div>
+  </div>
+
+  <!-- Pegguy -->
+    <div class="card red">
+      <div class="project-number">Pegguy <br><br><em>2017-2018</em></div>
+      <button class="close-btn">✕</button>
+      <div class="card-content">
+        <h3> Peggy </h3>
+        <p>Pegguy is a 2D platformer created for a game design contest. The theme was "Label and the Beast." We decided to focus on the PEGI rating system, which classifies games based on their violence, imagery, etc. The game consists of several slices of Pegguy’s life at different ages, which the player will discover. The game is a caricature of PEGI ratings, always pushing the limits. </p>
+        <img src="../IMG/Pegguy.png" alt="Pegguy, l'héroine"width="2%" height="7%">
+        <img src="../IMG/PegguyWeapon.png" alt="Pegguy, l'héroine armé"width="2%" height="7%">
+        <br>
+        <img src="../IMG/NiveauPegguy.png" alt="Aperçue d'un niveau de Pegguy"width="40%" height="30%" class="center">
+        <br>
+      </div>
+    </div>
+
+
+  <!-- Dungeons & Dragons -->
+    <div class="card red">
+      <div class="project-number">Dungeons & Dragons <br><br><em>2016-2017</em></div>
+      <button class="close-btn">✕</button>
+      <div class="card-content">
+        <h3> Dungeons & Dragons </h3>
+        <p> During my first year of a Computer Science degree, we had to create a turn-based RPG combat system.
+        I decided to build on the concept of Dungeons & Dragons, creating an entire adventure through a monster-filled dungeon in a text-based format. <br>
+        The player can choose the number of heroes in their team from a selection of 17 different heroes.
+        <br>Additionally, the game can be played PvP with a friend or allow the computer to play autonomously using an AI system.</p>
+        <p>Link to the Dungeons & Dragons PDF report <a href="../IMG/rapport.pdf">here</a></p>
+        <br>
+        <img src="../IMG/D_D.png" alt="Choix des héros"width="65%" height="25%"class="center" >
+        <img src="../IMG/StatD_D.PNG" alt="Stats des héros disponibles."width="65%" height="25%"class="center">
+      </div>
+    </div>
+
+
+    <!-- password -->
+    <div class="card red">
+      <div class="project-number">Password Secure <br><br><em>2015-2016</em></div>
+      <button class="close-btn">✕</button>
+      <div class="card-content">
+        <h3> Password Secure </h3>
+        <p>Password Secure is a mobile application I created for the baccalaureate.<br> In the ISN (Computer Science) specialization, we had to build a useful everyday-tool.
+        I therefore decided to create an app that randomly generates passwords based on a chosen difficulty level and the desired number of characters. These difficulty levels adjust the amount of special characters and whether uppercase letters are placed within the password.<br>
+        Users can then access all saved and labeled passwords from a personal, secure area.</p>
+        <br>
+        <img src="../IMG/ChoixLvl.png" alt="Choix de la difficulté du mot de passe"width="24%" height="50%">
+        <img src="../IMG/ChoixNb.png" alt="Choix du nombre de caractères dans le mot de passe"width="24%" height="50%">
+        <img src="../IMG/Confirmation.png" alt="Confirmationn du mot de passe généré"width="24%" height="50%">
+        <img src="../IMG/Renommage.png" alt="Sauvegarde du mot de passe et libellé"width="24%" height="50%">
+      </div>
+    </div>
+
+
+</div>
+
+<script>
+// JS pour zoom, fade du numéro, navigation aux flèches et Échap
+const cards = Array.from(document.querySelectorAll('.card'));
+let currentIndex = -1;
+
+cards.forEach((card, index) => {
+  const closeBtn = card.querySelector('.close-btn');
+  const number = card.querySelector('.project-number');
+
+  card.addEventListener('mousedown', () => {
+    const rect = card.getBoundingClientRect();
+    card.dataset.top = rect.top;
+    card.dataset.left = rect.left;
+    card.dataset.width = rect.width;
+    card.dataset.height = rect.height;
+  });
+
+  const expandCard = () => {
+    document.querySelectorAll('.card.expanded').forEach(c => {
+      c.classList.remove('expanded');
+      c.style.top = '';
+      c.style.left = '';
+      c.style.width = '';
+      c.style.height = '';
+      const n = c.querySelector('.project-number');
+      if (n) n.style.opacity = 1;
+    });
+
+    number.style.opacity = 0;
+
+    setTimeout(() => {
+      const rect = card.getBoundingClientRect();
+      card.style.top = rect.top + 'px';
+      card.style.left = rect.left + 'px';
+      card.style.width = rect.width + 'px';
+      card.style.height = rect.height + 'px';
+      card.offsetHeight;
+      card.classList.add('expanded');
+      card.style.top = '5vh';
+      card.style.left = '5vw';
+      card.style.width = '90vw';
+      card.style.height = '90vh';
+      currentIndex = index;
+    }, 100);
+  };
+
+  card.addEventListener('click', (e) => {
+    if (!card.classList.contains('expanded') && e.target !== closeBtn) expandCard();
+  });
+
+  closeBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    number.style.opacity = 1;
+    card.style.top = card.dataset.top + 'px';
+    card.style.left = card.dataset.left + 'px';
+    card.style.width = card.dataset.width + 'px';
+    card.style.height = card.dataset.height + 'px';
+
+    card.addEventListener('transitionend', function handler() {
+      card.classList.remove('expanded');
+      card.style.top = '';
+      card.style.left = '';
+      card.style.width = '';
+      card.style.height = '';
+      card.removeEventListener('transitionend', handler);
+      currentIndex = -1;
+    });
+  });
+});
+
+document.addEventListener('keydown', (e) => {
+  if (currentIndex === -1) return;
+  if (e.key === 'Escape') cards[currentIndex].querySelector('.close-btn').click();
+  else if (e.key === 'ArrowRight') {
+    let nextIndex = (currentIndex + 1) % cards.length;
+    cards[nextIndex].click();
+  } else if (e.key === 'ArrowLeft') {
+    let prevIndex = (currentIndex - 1 + cards.length) % cards.length;
+    cards[prevIndex].click();
+  }
+});
+</script>
+</body>
+<footer>
+  <button><a href="../index.html">Back to main</a></button>
+</footer>
+</html>

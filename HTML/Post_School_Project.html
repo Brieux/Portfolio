@@ -1,55 +1,338 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-<link rel="stylesheet" href="../CSS/style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Post School project</title>
+
+<!-- Polices et couleurs intégrées -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  background-image: url("../IMG/fond.png");
+  background-repeat: repeat;
+  background-size: 50%;
+  z-index: 0;
+  color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+a {
+  color: #f5f5f5;
+  text-decoration: underline;
+}
+
+/* Cartes et animations */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  width: 200%;
+  max-width: 1400px;
+  justify-items: center;
+}
+
+.card {
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: all 0.5s ease;
+  position: relative;
+  overflow: hidden;
+  animation: float 4s ease-in-out infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  font-family: 'Calibri', sans-serif;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.card:nth-child(2n) { animation-delay: 1s; }
+.card:nth-child(3n) { animation-delay: 2s; }
+.card:nth-child(4n) { animation-delay: 3s; }
+
+.red { background: #233E42;}
+
+.card.expanded {
+  position: fixed;
+  z-index: 1000;
+  border-radius: 30px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  animation: none;
+  transition: all 0.5s ease;
+  font-size: 1em;
+  background-color: rgba(0,0,0,1);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content {
+  opacity: 0;
+  transition: opacity 0.3s ease 0.2s;
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.card.expanded .card-content {
+  opacity: 1;
+}
+
+.card-content p, .card-content a, .card-content img, .card-content video {
+  margin-bottom: 15px;
+}
+
+.card-content a {
+  text-decoration: underline;
+}
+
+.card-content img, .card-content video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  font-size: 18px;
+  display: none;
+  z-index: 1001;
+}
+.card.expanded .close-btn {
+  display: block;
+}
+
+.project-number {
+  position: absolute;
+  font-size: 1.5em;
+  font-weight: bold;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+  text-align: center;
+  width: 100%;
+}
+
+button {
+  text-decoration-color: white;
+   border: none;
+    padding: 16px 32px; text-align: center; text-decoration: none;
+     display: inline-block; font-size: 16px; margin: 4px 2px; -webkit-transition-duration: 0.4s; /* Safari */
+     transition-duration: 0.4s; cursor: pointer; background-color: #233e42; color: #233e42; border: 2px solid black;
+      border-radius: 12px; z-index: 3;
+  }
+
+  button:hover {
+      background-color: #1f525a; color: black; box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+
+  footer {
+    position: fixed; left: 0; bottom: 0; width: 100%; color: white; text-align: center;
+}
+</style>
 </head>
 <body>
 
-<h1> Game jams </h1>
-<p>Many participations to Global Game Jam or GMTK Jam</p>
+  <h1>Post School project</h1>
+  <div class="grid">
 
-<h3>Uber 2077</h3>
-<p>Play as an Uber driver in year 2077 in a futuristic cyberpunk city, go through one week of time and try to escape the bad situation you start in !
-<br><br>
-Plan your trip by drawing it on your map, choose to adjust to the events or not, and repay your debt to start a new life in Synthity.</p>
-<p>Fourth participation to GMTK with the theme "Loop" we designed a game about management and plannifcation of taxi trip. The player has to draw the line of his own path for the days, trying to get a bunch of people and drop-off them to the correct place and managing his own fuel. <br> At the end of the day : fuel, car repair, earning money from client and all other stuff are credited. The goal is to earn as much money as you can and not getting bankrupted.</p>
-<p> I was in charge of all the player's objectives such as getting people into the car and droping them to the correct place or such as fuel consommation. </p>
-<p> Play the game on Itch.io with <a href="https://jeremyossolagd.itch.io/uber-2077"> this link</a> .</p>
-<img src="../IMG/uber1.jpg" alt="Screen from Uber 2077" class="center"/>
-<img src="../IMG/uber2.jpg" alt="Screen n°2 from Uber 2077" class="center"/>
+<!-- Uber 2077 -->
+  <div class="card red">
+    <div class="project-number">Uber 2077</div>
+    <button class="close-btn">✕</button>
+    <div class="card-content">
+      <h3>Uber 2077</h3>
+      <p>Play as an Uber driver in year 2077 in a futuristic cyberpunk city, go through one week of time and try to escape the bad situation you start in !
+      <br><br>
+      Plan your trip by drawing it on your map, choose to adjust to the events or not, and repay your debt to start a new life in Synthity.</p>
+      <p>Fourth participation to GMTK with the theme "Loop" we designed a game about management and plannifcation of taxi trip. The player has to draw the line of his own path for the days, trying to get a bunch of people and drop-off them to the correct place and managing his own fuel. <br> At the end of the day : fuel, car repair, earning money from client and all other stuff are credited. The goal is to earn as much money as you can and not getting bankrupted.</p>
+      <p> I was in charge of all the player's objectives such as getting people into the car and droping them to the correct place or such as fuel consommation. </p>
+      <p> Play the game on Itch.io with <a href="https://jeremyossolagd.itch.io/uber-2077"> this link</a> .</p>
+      <img src="../IMG/uber1.jpg" alt="Screen from Uber 2077" class="center"/>
+      <img src="../IMG/uber2.jpg" alt="Screen n°2 from Uber 2077" class="center"/>
+    </div>
+  </div>
 
-<h3> ReMech:Survivor </h3>
-<p>GMTK participation with the theme was "Build to Scale". We decided to make a group of 3 and to recreate a 3D version of Vampire Survivor game / Swarm mode from League of legends.
-<br>As a part of 3 programmers I handle all the tooling aspect, level generation (which is really infinite) and some of the guns abilities.</p>
-<p>After game was realease we spoke a lot with the team to get feedback on process and pipeline and we were a bit too ambitious for the amount of time and the balance of the game.</p>
-<p>The game is realease on <a href="https://thazerr.itch.io/remechsurvivor"> Itch.io</a> </p>
-<iframe width="1236" height="695" src="https://www.youtube.com/embed/1Cc5AKahShk" title="ReMech:Survivor - GMTK 2024" class="center" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  <!-- ReMech:Survivor -->
+    <div class="card red">
+      <div class="project-number">ReMech:Survivor</div>
+      <button class="close-btn">✕</button>
+      <div class="card-content">
+        <h3> ReMech:Survivor </h3>
+        <p>GMTK participation with the theme was "Build to Scale". We decided to make a group of 3 and to recreate a 3D version of Vampire Survivor game / Swarm mode from League of legends.
+        <br>As a part of 3 programmers I handle all the tooling aspect, level generation (which is really infinite) and some of the guns abilities.</p>
+        <p>After game was realease we spoke a lot with the team to get feedback on process and pipeline and we were a bit too ambitious for the amount of time and the balance of the game.</p>
+        <p>The game is realease on <a href="https://thazerr.itch.io/remechsurvivor"> Itch.io</a> </p>
+        <iframe width="1236" height="695" src="https://www.youtube.com/embed/1Cc5AKahShk" title="ReMech:Survivor - GMTK 2024" class="center" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-<h3> Bubble League </h3>
-<p>Arcade party game design highly inspired by Rocket League. The game take place into the ocean where player controls duck stuck in giant plastic ball and try to score into goal the beach balloon.</p>
-<p>I handle all the programming aspect of the game from physics to players controls and automatic camera controls. <br>
-The game can be play from 2 to 4 players by team on the same screen. Click on the image to get the game !</p>
-<a href="https://angleaigu.itch.io/bubble-league"> <img src="../IMG/BubbleLeague.png" alt="Logo Bubble League" class="center"/></a>
+      </div>
+    </div>
 
-<h3> Phasmophilia </h3>
-<p>Second participation to the GMTK game jam which was themed on "Role swap". We make a alternative version of Phasmophobia where you play the ghost instead of ghost's hunters.
-<br> The aim was to redo all the different abilities and all the aspect of the game to make it realistic. </p>
-<p>We had really good feedback coming from players who play a lot of Phasmophobia and we succeed into the level design and immersion.</p>
-<p>You can play the game on <a href="https://thazerr.itch.io/phasmophilia"> Itch.io</a></p>
-<img src="../IMG/Phasmo1.jpg" alt="Artwork from Phasmophilia" class="center"/>
-<img src="../IMG/Phasmo2.png" alt="Artwork 2 from Phasmophilia" class="center"/>
+    <!-- Bubble League -->
+      <div class="card red">
+        <div class="project-number">Bubble League</div>
+        <button class="close-btn">✕</button>
+        <div class="card-content">
+          <h3> Bubble League </h3>
+          <p>Arcade party game design highly inspired by Rocket League. The game take place into the ocean where player controls duck stuck in giant plastic ball and try to score into goal the beach balloon.</p>
+          <p>I handle all the programming aspect of the game from physics to players controls and automatic camera controls. <br>
+          The game can be play from 2 to 4 players by team on the same screen. Click on the image to get the game !</p>
+          <a href="https://angleaigu.itch.io/bubble-league"> <img src="../IMG/BubbleLeague.png" alt="Logo Bubble League" class="center"/></a>
+        </div>
+      </div>
 
-<h3> Ultramses </h3>
-<p> In the city of Neo-Egyptus, the mecha-bettle are spreading terror. Their Swarm-Network was hacked by the Mozes organization, so they turned against the city and its people. Armed with ancient weapons with phenomenal powers, evict as many creatures as possible before falling in battle, for the glory of Neo-Egyptus.</p>
-<p> The game is a fast-paced FPS mostly inspired by Call of Duty Zombie mode where the player can shoot on target and locked them with lighting chain. With various abilities to move around ennemies, players are highly challenged on their position and their ennemies management.</p>
-<p> As we where 15 in the project with all the former of my class we decided to split the team into various section which was leaded by one man. I was in charge of producing programming aspect and link with technical artist</p>
-<p>Download and play the game here on <a href="hhttps://loulaty.itch.io/ultramses"> Itch.io</a></p>
-<img src="../IMG/Ultrameses.png" alt="Artwork from Ultramses" class="center"/>
+      <!-- Phasmophilia -->
+        <div class="card red">
+          <div class="project-number">Phasmophilia</div>
+          <button class="close-btn">✕</button>
+          <div class="card-content">
+            <h3> Phasmophilia </h3>
+            <p>Second participation to the GMTK game jam which was themed on "Role swap". We make a alternative version of Phasmophobia where you play the ghost instead of ghost's hunters.
+            <br> The aim was to redo all the different abilities and all the aspect of the game to make it realistic. </p>
+            <p>We had really good feedback coming from players who play a lot of Phasmophobia and we succeed into the level design and immersion.</p>
+            <p>You can play the game on <a href="https://thazerr.itch.io/phasmophilia"> Itch.io</a></p>
+            <img src="../IMG/Phasmo1.jpg" alt="Artwork from Phasmophilia" class="center"/>
+            <img src="../IMG/Phasmo2.png" alt="Artwork 2 from Phasmophilia" class="center"/>
+          </div>
+        </div>
+
+        <!-- Ultramses -->
+          <div class="card red">
+            <div class="project-number">Ultramses</div>
+            <button class="close-btn">✕</button>
+            <div class="card-content">
+              <h3> Ultramses </h3>
+              <p> In the city of Neo-Egyptus, the mecha-bettle are spreading terror. Their Swarm-Network was hacked by the Mozes organization, so they turned against the city and its people. Armed with ancient weapons with phenomenal powers, evict as many creatures as possible before falling in battle, for the glory of Neo-Egyptus.</p>
+              <p> The game is a fast-paced FPS mostly inspired by Call of Duty Zombie mode where the player can shoot on target and locked them with lighting chain. With various abilities to move around ennemies, players are highly challenged on their position and their ennemies management.</p>
+              <p> As we where 15 in the project with all the former of my class we decided to split the team into various section which was leaded by one man. I was in charge of producing programming aspect and link with technical artist</p>
+              <p>Download and play the game here on <a href="hhttps://loulaty.itch.io/ultramses"> Itch.io</a></p>
+              <img src="../IMG/Ultrameses.png" alt="Artwork from Ultramses" class="center"/>
+            </div>
+          </div>
 
 
+<script>
+// JS pour zoom, fade du numéro, navigation aux flèches et Échap
+const cards = Array.from(document.querySelectorAll('.card'));
+let currentIndex = -1;
+
+cards.forEach((card, index) => {
+  const closeBtn = card.querySelector('.close-btn');
+  const number = card.querySelector('.project-number');
+
+  card.addEventListener('mousedown', () => {
+    const rect = card.getBoundingClientRect();
+    card.dataset.top = rect.top;
+    card.dataset.left = rect.left;
+    card.dataset.width = rect.width;
+    card.dataset.height = rect.height;
+  });
+
+  const expandCard = () => {
+    document.querySelectorAll('.card.expanded').forEach(c => {
+      c.classList.remove('expanded');
+      c.style.top = '';
+      c.style.left = '';
+      c.style.width = '';
+      c.style.height = '';
+      const n = c.querySelector('.project-number');
+      if (n) n.style.opacity = 1;
+    });
+
+    number.style.opacity = 0;
+
+    setTimeout(() => {
+      const rect = card.getBoundingClientRect();
+      card.style.top = rect.top + 'px';
+      card.style.left = rect.left + 'px';
+      card.style.width = rect.width + 'px';
+      card.style.height = rect.height + 'px';
+      card.offsetHeight;
+      card.classList.add('expanded');
+      card.style.top = '5vh';
+      card.style.left = '5vw';
+      card.style.width = '90vw';
+      card.style.height = '90vh';
+      currentIndex = index;
+    }, 100);
+  };
+
+  card.addEventListener('click', (e) => {
+    if (!card.classList.contains('expanded') && e.target !== closeBtn) expandCard();
+  });
+
+  closeBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    number.style.opacity = 1;
+    card.style.top = card.dataset.top + 'px';
+    card.style.left = card.dataset.left + 'px';
+    card.style.width = card.dataset.width + 'px';
+    card.style.height = card.dataset.height + 'px';
+
+    card.addEventListener('transitionend', function handler() {
+      card.classList.remove('expanded');
+      card.style.top = '';
+      card.style.left = '';
+      card.style.width = '';
+      card.style.height = '';
+      card.removeEventListener('transitionend', handler);
+      currentIndex = -1;
+    });
+  });
+});
+
+document.addEventListener('keydown', (e) => {
+  if (currentIndex === -1) return;
+  if (e.key === 'Escape') cards[currentIndex].querySelector('.close-btn').click();
+  else if (e.key === 'ArrowRight') {
+    let nextIndex = (currentIndex + 1) % cards.length;
+    cards[nextIndex].click();
+  } else if (e.key === 'ArrowLeft') {
+    let prevIndex = (currentIndex - 1 + cards.length) % cards.length;
+    cards[prevIndex].click();
+  }
+});
+</script>
 </body>
 <footer>
-<button><a href="../index.html">Back to main</a></button>
+  <button><a href="../index.html">Back to main</a></button>
 </footer>
 </html>
